@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="通过邮箱联系江就制作组。">
+  <meta name="theme-color" content="#00bcd4">
+  <title>江就｜联系</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="contact-view">
+  <div id="app" class="page-shell" v-cloak>
+    <site-header active="contact"></site-header>
+
+    <main>
+      <section class="section contact-page">
+        <div class="container">
+          <div class="contact-feature">
+            <div class="contact-feature-copy">
+              <p class="eyebrow">邮件联系</p>
+              <h1>联系邮箱</h1>
+              <p class="contact-message">咨询或其他问题，可通过邮件联系管理者。<br>感谢您的使用与来信。</p>
+            </div>
+
+            <div class="contact-email-panel">
+              <span>邮箱 / EMAIL</span>
+              <strong>2577175698@qq.com</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <site-footer></site-footer>
+
+    <transition name="toast">
+      <div v-if="toast" class="toast" role="status">{{ toast }}</div>
+    </transition>
+  </div>
+
+  <script src="vendor/vue.global.prod.js"></script>
+  <script src="app.js"></script>
+  <script>
+    JiangJiuApp({}).mount("#app");
+  </script>
+</body>
+</html>

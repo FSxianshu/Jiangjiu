@@ -1,0 +1,5 @@
+# Keep the local README out of the published repository.
+README.md
+
+# Voicebank archives are larger than GitHub's standard file limit.
+voicebank/*.zip

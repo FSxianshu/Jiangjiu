@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="江就，独立虚拟歌手。浏览角色介绍与全部声库，并下载中文、日语、韩语、英语和俄语声源。">
+  <meta name="theme-color" content="#00bcd4">
+  <title>江就｜虚拟歌手</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="page-shell" v-cloak>
+    <site-header active="home"></site-header>
+
+    <main>
+      <nav class="section-dots" aria-label="页面章节">
+        <a
+          v-for="dot in sectionDots"
+          :key="dot.id"
+          :href="'#' + dot.id"
+          class="section-dot"
+          :class="{ 'is-active': activeSection === dot.id }"
+          :aria-label="dot.label"
+          :aria-current="activeSection === dot.id ? 'location' : null"
+        ><span>{{ dot.label }}</span></a>
+      </nav>
+
+      <section id="top" class="home-hero">
+        <div class="container">
+          <div class="hero-layout">
+            <figure class="hero-figure">
+              <img src="img/jiangjiu01.png" alt="江就的全身角色立绘">
+              <figcaption>
+                <span>江就</span>
+                <span>OFFICIAL</span>
+              </figcaption>
+            </figure>
+
+            <div class="hero-copy">
+              <p class="eyebrow">虚拟歌手</p>
+              <h1>江就</h1>
+              <p class="hero-lead">UTAU/ACE/DIFFSINGER</p>
+              <p class="hero-description">
+                住在C市的一个普通学生，平时爱去护城河钓鱼，视警示牌如手纸。有一点轻微的收集癖，很珍视自己的两大本糖纸贴画。
+              </p>
+              <div class="hero-actions">
+                <a class="btn" href="download.html">全部声库</a>
+                <a class="btn btn-outline" href="about.html">角色介绍</a>
+              </div>
+              <dl class="hero-stats">
+                <div><dt>声库</dt><dd>{{ voicebanks.length }} 声库</dd></div>
+                <div><dt>语言</dt><dd>中文 · 日语 · 韩语等</dd></div>
+                <div><dt>管理</dt><dd>天降甘霖</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="voicebanks" class="section section-line">
+        <div class="container">
+          <div class="library-header">
+            <div>
+              <p class="eyebrow">VOICE ARCHIVE</p>
+              <h2 class="section-heading">声库浏览</h2>
+              <p class="section-description">中文 · 日语 · 韩语等，点击左侧了解更多。</p>
+            </div>
+            <a class="text-link" href="download.html">查看更多 <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="library-list">
+            <a v-for="(bank, index) in featuredBanks" :key="bank.id" class="library-row" :href="bank.file" @click.prevent="requestDownload(bank)">
+              <span class="library-index">{{ String(index + 1).padStart(2, "0") }}</span>
+              <span class="library-avatar">
+                <img :src="bank.image" :alt="`${bank.name}头像`">
+              </span>
+              <span class="library-name">
+                <strong>{{ bank.name }}</strong>
+                <small>{{ bank.description }}</small>
+              </span>
+              <span class="library-meta">{{ bank.language }}</span>
+              <span class="library-meta">{{ bank.format }}</span>
+              <span class="library-size">{{ bank.size }}</span>
+              <span class="library-arrow" aria-hidden="true">↓</span>
+            </a>
+          </div>
+          <!-- <div class="view-more-row">
+            <span>显示 {{ featuredBanks.length }} / {{ voicebanks.length }} 套声库</span>
+            <a class="btn btn-outline" href="download.html">查看更多声库 <span aria-hidden="true">→</span></a>
+          </div> -->
+        </div>
+      </section>
+
+      <section id="usage" class="section section-line">
+        <div class="container">
+          <div class="usage-layout">
+            <div>
+              <p class="eyebrow">USAGE</p>
+              <h2 class="section-heading">使用规约</h2>
+              <p class="section-description">音源管理者：天降甘霖</br>下载或使用声库前，请先阅读并遵守以下规约。</p>
+            </div>
+            <ol class="usage-rules">
+              <li>允许音源在标注音源作者的情况下进行二次配布。</li>
+              <li>建议使用后将音源标注在醒目位置。</li>
+              <li>禁止将音源以任何形式进行贩卖及转卖。</li>
+              <li>禁止将音源使用于任何违法及侵权用途。</li>
+              <li>禁止将音源用于和政治宣传、宗教布教有关的表现。</li>
+              <li>禁止将音源用于侮辱或诋毁该角色或其他角色的用途。</li>
+              <li>禁止将音源及形象用于ai活动。</li>
+			  <li>用户下载并使用即视为接受本规约。</li>
+			  <li>本声明随时有可能更新，一切以最新版为准</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <site-footer></site-footer>
+
+    <download-license :bank="downloadBank" @close="downloadBank = null" @confirm="confirmDownload"></download-license>
+
+    <transition name="toast">
+      <div v-if="toast" class="toast" role="status">{{ toast }}</div>
+    </transition>
+  </div>
+
+  <script src="vendor/vue.global.prod.js"></script>
+  <script src="app.js"></script>
+  <script>
+    JiangJiuApp({
+      data() {
+        return {
+          voicebanks: JiangJiuData.voicebanks,
+          activeSection: "top",
+          sectionDots: [
+            { id: "top", label: "首页" },
+            { id: "voicebanks", label: "声库" },
+            { id: "usage", label: "规约" }
+          ]
+        };
+      },
+      computed: {
+        featuredBanks() {
+          const featuredOrder = ["chinese", "japanese", "korean", "english", "russian"];
+          return featuredOrder
+            .map((id) => this.voicebanks.find((bank) => bank.id === id))
+            .filter(Boolean);
+        }
+      },
+      mounted() {
+        this._sectionScrollHandler = () => {
+          let current = "top";
+          const marker = window.innerHeight * 0.42;
+          this.sectionDots.forEach((dot) => {
+            const section = document.getElementById(dot.id);
+            if (section && section.getBoundingClientRect().top <= marker) {
+              current = dot.id;
+            }
+          });
+          this.activeSection = current;
+        };
+        window.addEventListener("scroll", this._sectionScrollHandler, { passive: true });
+        this._sectionLoadHandler = () => this._sectionScrollHandler();
+        window.addEventListener("load", this._sectionLoadHandler);
+        this._sectionScrollHandler();
+        this.$nextTick(() => requestAnimationFrame(this._sectionScrollHandler));
+        Promise.all(
+          Array.from(document.images).map((image) => {
+            if (image.complete) {
+              return Promise.resolve();
+            }
+            return new Promise((resolve) => {
+              image.addEventListener("load", resolve, { once: true });
+              image.addEventListener("error", resolve, { once: true });
+            });
+          })
+        ).then(this._sectionScrollHandler);
+      },
+      beforeUnmount() {
+        window.removeEventListener("scroll", this._sectionScrollHandler);
+        window.removeEventListener("load", this._sectionLoadHandler);
+      },
+      methods: {
+        requestDownload(bank) {
+          this.downloadBank = bank;
+        }
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>

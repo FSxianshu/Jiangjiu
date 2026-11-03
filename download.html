@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="下载江就声库，包括中文、日语、韩语、英语和俄语版本。">
+  <meta name="theme-color" content="#00bcd4">
+  <title>下载声库｜江就</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="page-shell" v-cloak>
+    <site-header active="download"></site-header>
+
+    <main>
+      <section class="section download-page">
+        <div class="container">
+          <div class="voicebank-grid">
+            <article v-for="bank in voicebanks" :key="bank.id" class="voicebank-card">
+              <div class="voicebank-cover">
+                <img :src="bank.image" :alt="`${bank.name}头像`">
+                <span class="voicebank-badge">{{ bank.language }} / {{ bank.format }}</span>
+              </div>
+
+              <div class="voicebank-body">
+                <div class="voicebank-topline">
+                  <span>{{ bank.format }}</span>
+                  <span>{{ bank.size }}</span>
+                </div>
+                <h2>{{ bank.name }}</h2>
+                <p>{{ bank.description }}</p>
+                <div class="voicebank-footer">
+                  <span>{{ bank.language }}</span>
+                  <button class="Btn" type="button" :aria-label="`下载${bank.name}`" @click="requestDownload(bank)">
+                    <svg class="svgIcon" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path>
+                    </svg>
+                    <span class="icon2" aria-hidden="true"></span>
+                    <span class="tooltip">{{ bank.size }}</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <site-footer></site-footer>
+
+    <download-license :bank="downloadBank" @close="downloadBank = null" @confirm="confirmDownload"></download-license>
+
+    <transition name="toast">
+      <div v-if="toast" class="toast" role="status">{{ toast }}</div>
+    </transition>
+  </div>
+
+  <script src="vendor/vue.global.prod.js"></script>
+  <script src="app.js"></script>
+  <script>
+    JiangJiuApp({
+      data() {
+        return {
+          voicebanks: JiangJiuData.voicebanks
+        };
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>

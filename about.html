@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="认识江就：角色立绘、基础资料与人物介绍。">
+  <meta name="theme-color" content="#00bcd4">
+  <title>江就｜角色介绍</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="page-shell" v-cloak>
+    <site-header active="about"></site-header>
+
+    <main>
+      <section class="section about-page">
+        <div class="container">
+          <div class="profile-section">
+            <div class="profile-art">
+              <div
+                class="portrait-carousel"
+                role="group"
+                aria-roledescription="轮播图"
+                aria-label="江就角色立绘"
+                tabindex="0"
+                @keydown.left.prevent="previousSlide"
+                @keydown.right.prevent="nextSlide"
+              >
+                <div class="carousel-stage" aria-live="polite">
+                  <transition name="carousel-fade" mode="out-in">
+                    <img
+                      :key="currentSlide"
+                      :src="slides[currentSlide].src"
+                      :alt="slides[currentSlide].alt"
+                    >
+                  </transition>
+                  <button
+                    class="carousel-arrow carousel-arrow-prev"
+                    type="button"
+                    aria-label="上一张立绘"
+                    @click="previousSlide"
+                  >&lt;</button>
+                  <button
+                    class="carousel-arrow carousel-arrow-next"
+                    type="button"
+                    aria-label="下一张立绘"
+                    @click="nextSlide"
+                  >&gt;</button>
+                </div>
+
+                <div class="carousel-caption">
+                  <div>
+                    <strong>{{ slides[currentSlide].title }}</strong>
+                    <span>{{ slides[currentSlide].caption }}</span>
+                  </div>
+                  <span>{{ String(currentSlide + 1).padStart(2, "0") }} / {{ String(slides.length).padStart(2, "0") }}</span>
+                </div>
+
+                <div class="carousel-controls">
+                  <div class="carousel-dots" aria-label="选择角色立绘">
+                    <button
+                      v-for="(slide, index) in slides"
+                      :key="slide.src"
+                      type="button"
+                      :class="{ 'is-active': currentSlide === index }"
+                      :aria-label="`查看${slide.title}`"
+                      @click="currentSlide = index"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile-copy">
+              <h1>江就</h1>
+              <p class="profile-role">JiangJiu</p>
+              <dl class="character-facts">
+                <div><dt>姓名</dt><dd>江就</dd></div>
+                <div><dt>年龄</dt><dd>19</dd></div>
+                <div><dt>身高</dt><dd>172 cm</dd></div>
+                <div><dt>体重</dt><dd><s>（悄悄划掉）</s></dd></div>
+                <div><dt>性格</dt><dd>温顺阳光</dd></div>
+                <div><dt>身份</dt><dd>学生</dd></div>
+              </dl>
+              <p>
+                住在 C 市的一个普通学生，平时爱去护城河钓鱼，视警示牌如手纸。有一点轻微的收集癖，很珍视自己的两大本糖纸贴画。
+              </p>
+              <div class="profile-tags" aria-label="角色关键词">
+                <span>温顺</span>
+                <span>阳光</span>
+                <span>爱钓鱼</span>
+                <span>收集糖纸</span>
+                <span>多语言声库</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <site-footer></site-footer>
+  </div>
+
+  <script src="vendor/vue.global.prod.js"></script>
+  <script src="app.js"></script>
+  <script>
+    JiangJiuApp({
+      data() {
+        return {
+          currentSlide: 0,
+          slides: [
+            {
+              src: "img/jiangjiu01.png",
+              title: "01",
+              caption: "江就 · 角色立绘 01",
+            },
+            {
+              src: "img/jiangjiu02.png",
+              title: "02",
+              caption: "江就 · 角色立绘 02",
+            },
+            {
+              src: "img/jiangjiu03.png",
+              title: "03",
+              caption: "江就 · 角色立绘 03",
+            },
+            {
+              src: "img/jiangjiu04.png",
+              title: "04",
+              caption: "江就 · 角色立绘 04",
+            }
+          ]
+        };
+      },
+      methods: {
+        previousSlide() {
+          this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        },
+        nextSlide() {
+          this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        }
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>
