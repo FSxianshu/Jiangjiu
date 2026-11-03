@@ -218,7 +218,11 @@
             <a href="download.html">下载</a>
             <a href="contact.html">联系</a>
           </nav>
-          <p>管理者：天降甘霖</p>
+          <p class="footer-meta">
+            <span>管理者：天降甘霖</span>
+            <span aria-hidden="true">|</span>
+            <span>网页提供 &amp; 维护：赋水仙术</span>
+          </p>
         </div>
       </footer>
     `
