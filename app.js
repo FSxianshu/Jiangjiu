@@ -8,6 +8,8 @@
     { id: "contact", label: "联系", href: "contact.html" }
   ];
 
+  const voicebankReleaseBase = "https://github.com/FSxianshu/Jiangjiu/releases/download/voicebank-v1.0.0";
+
   // 下载页卡片文案：名称、语言、格式、文件大小和简介都在这里修改。
   const voicebanks = [
     {
@@ -18,7 +20,7 @@
       group: "chinese",
       format: "连单术",
       size: "约 53.9 MB",
-      file: "voicebank/江就中文连单.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_Chinese_CVVC.zip`,
       image: "voicebank/江就中文连单.png",
       description: "C4 · E4双音阶中文连单声库。"
     },
@@ -30,7 +32,7 @@
       group: "chinese",
       format: "CVV",
       size: "约 51.6 MB",
-      file: "voicebank/江就CVV2.0.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_CVV2.zip`,
       image: "voicebank/江就CVV2.0.png",
       description: "中文 CVV 声库。"
     },
@@ -42,7 +44,7 @@
       group: "chinese",
       format: "DEC式CVVC",
       size: "约 354.6 MB",
-      file: "voicebank/江就dec连呼.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_Dec.zip`,
       image: "voicebank/江就dec连呼.png",
       description: "G3 · C4 · E4 三音阶Dec式CVVC中文声库。"
     },
@@ -54,7 +56,7 @@
       group: "chinese",
       format: "CVVC",
       size: "约 286.2 MB",
-      file: "voicebank/江就_soft.zip",
+      file: `${voicebankReleaseBase}/_soft.zip`,
       image: "voicebank/江就_soft.png",
       description: "Soft声线的中文CVVC声库。"
     },
@@ -66,7 +68,7 @@
       group: "chinese",
       format: "音色扩展",
       size: "约 104.2 MB",
-      file: "voicebank/江就_power.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_Power.zip`,
       image: "voicebank/江就_power.png",
       description: "Power声线的中文CVVC声库。"
     },
@@ -78,7 +80,7 @@
       group: "chinese",
       format: "声库扩展",
       size: "约 148.2 MB",
-      file: "voicebank/江就_殊.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_Special.zip`,
       image: "voicebank/江就_殊.png",
       description: "Light声线的中文CVVC声库。"
     },
@@ -90,7 +92,7 @@
       group: "japanese",
       format: "VCV",
       size: "约 67.1 MB",
-      file: "voicebank/江就日语四音阶连续音.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_Japanese_VCV.zip`,
       image: "voicebank/江就日语四音阶连续音.png",
       description: "4阶日语 VCV 声库。"
     },
@@ -102,7 +104,7 @@
       group: "japanese",
       format: "DiffSinger",
       size: "约 550.8 MB",
-      file: "voicebank/江就_Diff.zip",
+      file: `${voicebankReleaseBase}/_Diff.zip`,
       image: "voicebank/江就_Diff.png",
       description: "支持中文与日语的 DiffSinger 声库。"
     },
@@ -114,7 +116,7 @@
       group: "other",
       format: "CVVC",
       size: "约 39.3 MB",
-      file: "voicebank/江就_KoreanCVVC.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_KoreanCVVC.zip`,
       image: "voicebank/江就_KoreanCVVC.png",
       description: "收录 D#4 的韩语 CVVC 单音阶声库。"
     },
@@ -126,7 +128,7 @@
       group: "other",
       format: "声库扩展",
       size: "约 227.5 MB",
-      file: "voicebank/江就_sweet.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_Sweet.zip`,
       image: "voicebank/江就_sweet.png",
       description: "Sweet声线的中文CVVC声库。"
     },
@@ -138,7 +140,7 @@
       group: "other",
       format: "VCCV",
       size: "约 183.1 MB",
-      file: "voicebank/江就EngVCCV.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_English_VCCV.zip`,
       image: "voicebank/江就EngVCCV.png",
       description: "英语 VCCV 声库。"
     },
@@ -150,7 +152,7 @@
       group: "other",
       format: "CVC",
       size: "约 32.5 MB",
-      file: "voicebank/江就Rus_CVC.zip",
+      file: `${voicebankReleaseBase}/JiangJiu_Russian_CVC.zip`,
       image: "voicebank/江就Rus_CVC.png",
       description: "俄语 CVC 声库。"
     }
