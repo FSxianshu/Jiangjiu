@@ -56,7 +56,7 @@
       group: "chinese",
       format: "CVVC",
       size: "约 286.2 MB",
-      file: `${voicebankReleaseBase}/_soft.zip`,
+      file: `${voicebankReleaseBase}/JiangJiu_Soft.zip`,
       image: "voicebank/江就_soft.png",
       description: "Soft声线的中文CVVC声库。"
     },
@@ -104,7 +104,7 @@
       group: "japanese",
       format: "DiffSinger",
       size: "约 550.8 MB",
-      file: `${voicebankReleaseBase}/_Diff.zip`,
+      file: `${voicebankReleaseBase}/JiangJiu_Diff.zip`,
       image: "voicebank/江就_Diff.png",
       description: "支持中文与日语的 DiffSinger 声库。"
     },
